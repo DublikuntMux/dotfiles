@@ -1,0 +1,129 @@
+@import "mocha.css";
+
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 15px;
+}
+
+window#waybar {
+  background-color: rgba(30, 30, 46, 0.5);
+  color: @text;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  border-radius: 11px;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+button {
+  border: none;
+  border-radius: 11px;
+}
+
+#workspaces button {
+  padding: 5px 5px;
+  color: @mauve;
+}
+
+tooltip {
+  color: @text;
+  background-color: rgba(30, 30, 46, 0.5);
+  border: 2px solid @teal;
+}
+
+#clock,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#battery,
+#tray,
+#custom-power,
+#custom-wl-gammarelay-temperature,
+#custom-wl-gammarelay-brightness,
+#custom-wl-gammarelay-gamma {
+  min-width: 50px;
+  padding: 0 10px;
+  border-radius: 11px;
+}
+
+#workspaces {
+  margin: 0 4px;
+}
+
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
+}
+
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
+}
+
+#clock {
+  color: @red;
+}
+
+#custom-wl-gammarelay-brightness {
+  color: @mauve;
+}
+
+#custom-wl-gammarelay-gamma {
+  color: @sapphire;
+}
+
+#custom-wl-gammarelay-temperature {
+  color: @yellow;
+}
+
+#cpu {
+  color: @teal;
+}
+
+#memory {
+  color: @mauve;
+}
+
+#network {
+  color: @sapphire;
+}
+
+#network.disconnected {
+  color: @subtext1;
+}
+
+#pulseaudio {
+  color: @yellow;
+}
+
+#pulseaudio.muted {
+  color: @subtext1;
+}
+
+#tray {
+  color: @peach;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  color: @red;
+}
+
+#battery {
+  color: #a6e3a1;
+}
+
+#custom-power {
+  color: #be2e4d;
+  border-radius: 0 10px 10px 0;
+  margin-right: 5px;
+}
+
+#window {
+  color: @text;
+}
