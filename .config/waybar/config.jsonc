@@ -14,9 +14,6 @@
         "clock",
         "wlr/workspaces"
     ],
-    "modules-center": [
-        "hyprland/window"
-    ],
     "modules-right": [
         "pulseaudio",
         "network",
@@ -27,10 +24,6 @@
         "tray",
         "custom/power"
     ],
-    "hyprland/window": {
-        "format": "{}",
-        "separate-outputs": true
-    },
     "hyprland/language": {
         "format": "{}",
         "format-us": "US",
@@ -59,7 +52,7 @@
     },
     "cpu": {
         "format": "{usage}% <span font='14'>󰻠</span>",
-        "on-click":"kitty htop"
+        "on-click":"kitty btop"
     },
     "battery": {
         "states": {
@@ -86,7 +79,8 @@
         ]
     },
     "memory": {
-        "format": "{}% <span font='14'>󰍛</span>"
+        "format": "{}% <span font='14'>󰍛</span>",
+        "on-click":"kitty btop"
     },
     "network": {
         "format-wifi": "{essid} ({signalStrength}%) <span font='14'>󰖩</span>",
@@ -142,6 +136,6 @@
     },
     "custom/cliphist": {
         "format": "󰋚",
-        "on-click": "cliphist list | wofi -i -d --yoffset 10 --xoffset 1350 | cliphist decode | wl-copy"
+        "on-click": "cliphist list | wofi -i -d --yoffset 10 --xoffset 1074 | cliphist decode | wl-copy"
     }
 }

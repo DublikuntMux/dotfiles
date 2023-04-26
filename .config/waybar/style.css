@@ -134,7 +134,3 @@ tooltip {
   border-radius: 0 10px 10px 0;
   margin-right: 5px;
 }
-
-#window {
-  color: @text;
-}

@@ -1,30 +1,13 @@
 #!/usr/bin/env bash
-#
-#This is a fork of wofi-wifi-menu from fourstepper at https://github.com/fourstepper/wofi-wifi-menu,
-#which is a fork of rofi-wifi-menu from zbaylin at https://github.com/zbaylin/rofi-wifi-menu.
-#
-#This fork was done by Michael Williams of Fearless Geek Media.
-#
-# Starts a scan of available broadcasting SSIDs
-# nmcli dev wifi rescan
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 FIELDS=SSID,SECURITY
 POSITION=3
 YOFF=10
-XOFF=-300
-
-if [ -r "$DIR/config" ]; then
-    source "$DIR/config"
-    elif [ -r "$HOME/.config/wofi/wifi" ]; then
-    source "$HOME/.config/wofi/wifi"
-else
-    echo "WARNING: config file not found! Using default values."
-fi
+XOFF=-400
 
 LIST=$(nmcli --fields "$FIELDS" device wifi list | sed '/^--/d')
-killall yad -9 -r "wifi4wofi scan"
 # For some reason wofi always approximates character width 2 short... hmmm
 RWIDTH=$(($(echo "$LIST" | head -n 1 | awk '{print length($0); }')*10))
 # Dynamically change the height of the wofi menu
