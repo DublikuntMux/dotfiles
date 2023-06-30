@@ -1,70 +1,38 @@
-source ~/.config/fish/conf.d/_tide_init.fish
-
 function fish_greeting
     neofetch
 end
 
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
-set -U __done_min_cmd_duration 10000
-set -U __done_notification_urgency_level low
+set -g -x EMSCRIPTEN_ROOT /usr/lib/emscripten
+set -g -x BUN_INSTALL "$HOME/.bun"
+set -g -x GCC_COLORS 'error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-set -p EMSCRIPTEN_ROOT /usr/lib/emscripten
-set -p BUN_INSTALL "$HOME/.bun"
-set -p GCC_COLORS 'error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+set -g -x PATH $PATH ~/.local/bin
+set -g -x PATH $PATH ~/.local/lib
+set -g -x PATH $PATH ~/.local/bin/vlang
+set -g -x PATH $PATH ~/.cargo/bin
+set -g -x PATH $PATH ~/.local/bin/DiscordChatExporter
+set -g -x PATH $PATH /mnt/sda1/Develop/flutter/bin
+set -g -x PATH $PATH /usr/lib/emscripten
+set -g -x PATH $BUN_INSTALL/bin $PATH
 
-set -p PATH $PATH ~/.local/bin
-set -p PATH $PATH ~/.local/lib
-set -p PATH $PATH ~/.local/bin/vlang
-set -p PATH $PATH /usr/lib/emscripten
-set -p PATH $BUN_INSTALL/bin $PATH
+set -g -x ANDROID_SDK_ROOT ~/Android/Sdk
+set -g -x ANDROID_NDK_ROOT ~/Android/Sdk/ndk/25.2.9519653
 
-set -p GDK_BACKEND wayland
-set -p TDESKTOP_DISABLE_GTK_INTEGRATION 1
-set -p CLUTTER_BACKEND wayland
-set -p BEMENU_BACKEND wayland
-set -p QT_STYLE_OVERRIDE kvantum
-set -p QT_WAYLAND_FORCE_DPI physical
-set -p QT_WAYLAND_DISABLE_WINDOWDECORATION 1
-set -p ELM_DISPLAY wl
-set -p ECORE_EVAS_ENGINE wayland_egl
-set -p ELM_ENGINE wayland_egl
-set -p ELM_ACCEL opengl
-set -p SDL_VIDEODRIVER wayland
-set -p _JAVA_AWT_WM_NONREPARENTING 1
-set -p NO_AT_BRIDGE 1
-set -p WINIT_UNIX_BACKEND wayland
-
-function __history_previous_command
-  switch (commandline -t)
-  case "!"
-    commandline -t $history[1]; commandline -f repaint
-  case "*"
-    commandline -i !
-  end
-end
-
-function __history_previous_command_arguments
-  switch (commandline -t)
-  case "!"
-    commandline -t ""
-    commandline -f history-token-search-backward
-  case "*"
-    commandline -i '$'
-  end
-end
-
-if [ "$fish_key_bindings" = fish_vi_key_bindings ];
-  bind -Minsert ! __history_previous_command
-  bind -Minsert '$' __history_previous_command_arguments
-else
-  bind ! __history_previous_command
-  bind '$' __history_previous_command_arguments
-end
-
-function history
-    builtin history --show-time='%F %T '
-end
+set -g -x GDK_BACKEND wayland
+set -g -x TDESKTOP_DISABLE_GTK_INTEGRATION 1
+set -g -x CLUTTER_BACKEND wayland
+set -g -x BEMENU_BACKEND wayland
+set -g -x QT_QPA_PLATFORM wayland-egl
+set -g -x QT_QPA_PLATFORMTHEME qt5ct
+set -g -x ELM_DISPLAY wl
+set -g -x ECORE_EVAS_ENGINE wayland_egl
+set -g -x ELM_ENGINE wayland_egl
+set -g -x ELM_ACCEL opengl
+set -g -x _JAVA_AWT_WM_NONREPARENTING 1
+set -g -x NO_AT_BRIDGE 1
+set -g -x WINIT_UNIX_BACKEND wayland
 
 
 alias ls='exa -al --color=always --group-directories-first --icons'
@@ -79,7 +47,11 @@ alias ......='cd ../../../../..'
 
 alias grubup="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias wget='wget -c '
-alias gcl="git clone --recursive "
+
+alias gc="git clone "
+alias gcf="git clone --depth 1 "
+alias gcr="git clone --recursive "
+alias gcrf="git clone --recursive --depth 1 "
 
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
@@ -89,9 +61,11 @@ alias egrep='grep -E --color=auto'
 alias hw='hwinfo --short'
 
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
-
+alias update="sudo pacman -Suy"
 alias cleanup='sudo pacman -Rns (pacman -Qtdq)'
 alias jctl="journalctl -p 3 -xb"
+
+# !! Contents within this block are managed by 'mamba init' !!
+set -gx MAMBA_EXE "/home/dublikun/.local/bin/micromamba"
+set -gx MAMBA_ROOT_PREFIX "/home/dublikun/micromamba"
+$MAMBA_EXE shell hook --shell fish --prefix $MAMBA_ROOT_PREFIX | source

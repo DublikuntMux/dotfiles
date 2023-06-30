@@ -8,4 +8,5 @@ while true; do
     waybar &
     inotifywait -e create,modify $CONFIG_FILES
     killall waybar
+    notify-send waybar Reload \"Reloaded configuration\" &
 done

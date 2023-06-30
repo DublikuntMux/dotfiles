@@ -1,35 +1,16 @@
 {
+    "position": "top",
     "layer": "top",
-    "height": 36,
-    "spacing": 4,
-    "margin-top": 10,
-    "margin-right": 5,
-    "margin-left": 5,
+    "height": 16,
+    "margin-top": 0,
     "margin-bottom": 0,
-    "modules-left": [
-        "battery",
-        "custom/wl-gammarelay-temperature",
-        "custom/wl-gammarelay-brightness",
-        "custom/wl-gammarelay-gamma",
-        "clock",
-        "wlr/workspaces"
-    ],
-    "modules-right": [
-        "pulseaudio",
-        "network",
-        "hyprland/language",
-        "custom/cliphist",
-        "cpu",
-        "memory",
-        "tray",
-        "custom/power"
-    ],
-    "hyprland/language": {
-        "format": "{}",
-        "format-us": "US",
-        "format-ru": "RU",
-        "keyboard-name": "at-translated-set-2-keyboard"
-    },
+    "margin-left": 0,
+    "margin-right": 0,
+    "modules-left": ["battery", "wlr/workspaces"],
+    "modules-center": ["cpu", "memory", "disk"],
+    "modules-right": ["tray", "custom/cliphist", "network", "hyprland/language", "wireplumber", "custom/power", "clock"],
+
+    
     "wlr/workspaces": {
         "format": "{icon}",
         "on-click": "activate",
@@ -42,18 +23,6 @@
         "on-scroll-up": "hyprctl dispatch workspace e+1",
         "on-scroll-down": "hyprctl dispatch workspace e-1"
     },
-    "tray": {
-        "spacing": 10
-    },
-    "clock": {
-        "format": "{:%I:%M %p}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
-    },
-    "cpu": {
-        "format": "{usage}% <span font='14'>󰻠</span>",
-        "on-click":"kitty btop"
-    },
     "battery": {
         "states": {
             "good": 95,
@@ -65,22 +34,40 @@
         "format-plugged": " {capacity}%",
         "format-alt": "<span font='10'>{time} {icon}</span>",
         "format-icons": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
         ]
     },
+
+
+    "cpu": {
+        "format": "󰻠 {usage}%",
+        "format-alt": "󰻠 {avg_frequency} GHz",
+        "interval": 5
+    },
     "memory": {
-        "format": "{}% <span font='14'>󰍛</span>",
-        "on-click":"kitty btop"
+        "format": "󰍛 {}%",
+        "format-alt": "󰍛 {used}/{total} GiB",
+        "interval": 5
+    },
+    "disk": {
+        "format": "󰋊 {}%",
+        "format-alt": "󰋊 {used}/{total} GiB",
+        "interval": 5,
+        "path": "/mnt/sda1"
+    },
+
+
+    "tray": {
+		"icon-size": 16,
+		"spacing": 5
+	},
+    "custom/cliphist": {
+        "format": "󰋚",
+        "on-click": "cliphist list | wofi -i -d --yoffset 10 --xoffset 1074 | cliphist decode | wl-copy"
     },
     "network": {
         "format-wifi": "{essid} ({signalStrength}%) <span font='14'>󰖩</span>",
@@ -90,7 +77,13 @@
         "format-disconnected": "Disconnected <span font='14'>󰈂</span>",
         "on-click": "~/.config/waybar/scripts/wifi4wofi.sh"
     },
-    "pulseaudio": {
+    "hyprland/language": {
+        "format": "{}",
+        "format-us": "US",
+        "format-ru": "RU",
+        "keyboard-name": "at-translated-set-2-keyboard"
+    },
+    "wireplumber": {
         "format": "{volume}% <span font='14'>{icon}</span>",
         "format-bluetooth": "{volume}% <span font='14'>{icon}</span>",
         "format-bluetooth-muted": "<span font='14'>󰖁</span>",
@@ -116,26 +109,10 @@
         "format": "⏻",
         "on-click": "wlogout --protocol layer-shell"
     },
-    "custom/wl-gammarelay-temperature": {
-        "format": "{} ",
-        "exec": "wl-gammarelay-rs watch {t}",
-        "on-scroll-up": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n +100",
-        "on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100"
-    },
-    "custom/wl-gammarelay-brightness": {
-        "format": "{}% ",
-        "exec": "wl-gammarelay-rs watch {bp}",
-        "on-scroll-up": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d +0.02",
-        "on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d -0.02"
-    },
-    "custom/wl-gammarelay-gamma": {
-        "format": "{}% γ",
-        "exec": "wl-gammarelay-rs watch {g}",
-        "on-scroll-up": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateGamma d +0.02",
-        "on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateGamma d -0.02"
-    },
-    "custom/cliphist": {
-        "format": "󰋚",
-        "on-click": "cliphist list | wofi -i -d --yoffset 10 --xoffset 1074 | cliphist decode | wl-copy"
-    }
+    "clock": {
+		"format": " {:%H:%M}",
+		"tooltip": "true",
+        	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        	"format-alt": " {:%d/%m}"
+	}
 }
