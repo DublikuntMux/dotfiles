@@ -3,7 +3,6 @@ show-failed-attempts
 clock
 font="FiraCode Nerd Font"
 indicator
-screenshots
 indicator-radius=200
 indicator-thickness=20
 grace=2

@@ -1,118 +1,118 @@
 {
-    "position": "top",
-    "layer": "top",
-    "height": 16,
-    "margin-top": 0,
-    "margin-bottom": 0,
-    "margin-left": 0,
-    "margin-right": 0,
-    "modules-left": ["battery", "wlr/workspaces"],
-    "modules-center": ["cpu", "memory", "disk"],
-    "modules-right": ["tray", "custom/cliphist", "network", "hyprland/language", "wireplumber", "custom/power", "clock"],
+  "position": "top",
+  "layer": "top",
+  "height": 16,
+  "margin-top": 0,
+  "margin-bottom": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "modules-left": ["battery", "hyprland/workspaces"],
+  "modules-center": ["cpu", "memory", "disk"],
+  "modules-right": [
+    "tray",
+    "custom/cliphist",
+    "network",
+    "hyprland/language",
+    "wireplumber",
+    "custom/idle",
+    "custom/power",
+    "clock"
+  ],
 
-    
-    "wlr/workspaces": {
-        "format": "{icon}",
-        "on-click": "activate",
-        "format-icons": {
-            "urgent": "",
-            "active": "",
-            "default": ""
-        },
-        "sort-by-number": true,
-        "on-scroll-up": "hyprctl dispatch workspace e+1",
-        "on-scroll-down": "hyprctl dispatch workspace e-1"
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "urgent": "",
+      "active": "",
+      "default": ""
     },
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 20
-        },
-        "format": "<span font='12'>{icon} {capacity}%</span>",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "<span font='10'>{time} {icon}</span>",
-        "format-icons": [
-            " ",
-            " ",
-            " ",
-            " ",
-            " "
-        ]
+    "sort-by-number": true,
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1"
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 20
     },
+    "format": "<span font='12'>{icon} {capacity}%</span>",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "<span font='10'>{time} {icon}</span>",
+    "format-icons": [" ", " ", " ", " ", " "]
+  },
 
+  "cpu": {
+    "format": "󰻠 {usage}%",
+    "format-alt": "󰻠 {avg_frequency} GHz",
+    "interval": 5
+  },
+  "memory": {
+    "format": "󰍛 {}%",
+    "format-alt": "󰍛 {used}/{total} GiB",
+    "interval": 5
+  },
+  "disk": {
+    "format": "󰋊 {}%",
+    "format-alt": "󰋊 {used}/{total} GiB",
+    "interval": 5,
+    "path": "/mnt/sda1"
+  },
 
-    "cpu": {
-        "format": "󰻠 {usage}%",
-        "format-alt": "󰻠 {avg_frequency} GHz",
-        "interval": 5
-    },
-    "memory": {
-        "format": "󰍛 {}%",
-        "format-alt": "󰍛 {used}/{total} GiB",
-        "interval": 5
-    },
-    "disk": {
-        "format": "󰋊 {}%",
-        "format-alt": "󰋊 {used}/{total} GiB",
-        "interval": 5,
-        "path": "/mnt/sda1"
-    },
-
-
-    "tray": {
-		"icon-size": 16,
-		"spacing": 5
-	},
-    "custom/cliphist": {
-        "format": "󰋚",
-        "on-click": "cliphist list | wofi -i -d --yoffset 10 --xoffset 1074 | cliphist decode | wl-copy"
-    },
-    "network": {
-        "format-wifi": "{essid} ({signalStrength}%) <span font='14'>󰖩</span>",
-        "format-ethernet": "Connected <span font='14'>󰈁</span>",
-        "tooltip-format": "{ifname} via {gwaddr}/{cidr}",
-        "format-linked": "{ifname} (No IP) <span font='14'>󰈁</span>",
-        "format-disconnected": "Disconnected <span font='14'>󰈂</span>",
-        "on-click": "~/.config/waybar/scripts/wifi4wofi.sh"
-    },
-    "hyprland/language": {
-        "format": "{}",
-        "format-us": "US",
-        "format-ru": "RU",
-        "keyboard-name": "at-translated-set-2-keyboard"
-    },
-    "wireplumber": {
-        "format": "{volume}% <span font='14'>{icon}</span>",
-        "format-bluetooth": "{volume}% <span font='14'>{icon}</span>",
-        "format-bluetooth-muted": "<span font='14'>󰖁</span>",
-        "format-muted": "<span font='14'>󰖁</span>",
-        "format-source": "{volume}% <span font='14'>󰕾</span>",
-        "format-source-muted": "<span font='14'>󰖁</span>",
-        "on-click": "pavucontrol",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "󰋎",
-            "headset": "󰕾",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": [
-                "",
-                "",
-                ""
-            ]
-        }
-    },
-    "custom/power": {
-        "format": "⏻",
-        "on-click": "wlogout --protocol layer-shell"
-    },
-    "clock": {
-		"format": " {:%H:%M}",
-		"tooltip": "true",
-        	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        	"format-alt": " {:%d/%m}"
-	}
+  "tray": {
+    "icon-size": 16,
+    "spacing": 5
+  },
+  "custom/cliphist": {
+    "format": "󰋚",
+    "on-click": "cliphist list | wofi -i -d --yoffset 10 --xoffset 1074 | cliphist decode | wl-copy"
+  },
+  "network": {
+    "format-wifi": "{essid} ({signalStrength}%) <span font='14'>󰖩</span>",
+    "format-ethernet": "Connected <span font='14'>󰈁</span>",
+    "tooltip-format": "{ifname} via {gwaddr}/{cidr}",
+    "format-linked": "{ifname} (No IP) <span font='14'>󰈁</span>",
+    "format-disconnected": "Disconnected <span font='14'>󰈂</span>",
+    "on-click": "~/.config/waybar/scripts/wifi4wofi.sh"
+  },
+  "hyprland/language": {
+    "format": "{}",
+    "format-us": "US",
+    "format-ru": "RU",
+    "keyboard-name": "at-translated-set-2-keyboard"
+  },
+  "wireplumber": {
+    "format": "{volume}% <span font='14'>{icon}</span>",
+    "format-bluetooth": "{volume}% <span font='14'>{icon}</span>",
+    "format-bluetooth-muted": "<span font='14'>󰖁</span>",
+    "format-muted": "<span font='14'>󰖁</span>",
+    "format-source": "{volume}% <span font='14'>󰕾</span>",
+    "format-source-muted": "<span font='14'>󰖁</span>",
+    "on-click": "pavucontrol",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "󰋎",
+      "headset": "󰕾",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [" ", " ", " "]
+    }
+  },
+  "custom/idle": {
+    "format": "",
+    "on-click": "~/.config/hypr/swaylock.sh"
+  },
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "wlogout --protocol layer-shell"
+  },
+  "clock": {
+    "format": " {:%H:%M}",
+    "tooltip": "true",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": " {:%d/%m}"
+  }
 }

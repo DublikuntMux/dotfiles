@@ -5,22 +5,20 @@
   font-size: 16px;
   font-style: normal;
   min-height: 0;
+  font-weight: bold;
 }
 
 window#waybar {
   background: rgba(30, 30, 46, 0.5);
   border-bottom: 1px solid #282828;
-  color: #f4d9e1
+  color: #f4d9e1;
 }
 
 #workspaces {
-background: #282828;
-margin: 5px 5px 5px 5px;
-padding: 0px 5px 0px 5px;
-border-radius: 16px;
-border: solid 0px #f4d9e1;
-font-weight: normal;
-font-style: normal;
+  background: #282828;
+  margin: 5px 5px 5px 5px;
+  padding: 0px 5px 0px 5px;
+  border-radius: 16px;
 }
 
 #workspaces button {
@@ -36,39 +34,73 @@ font-style: normal;
 }
 
 #workspaces button:hover {
-background-color: #E6B9C6;
-color: black;
-border-radius: 16px;
+  background-color: #e6b9c6;
+  color: black;
+  border-radius: 16px;
 }
 
-#custom-date, #clock, #battery, #wireplumber, #network, #custom-cliphist {
-background: transparent;
-padding: 5px 5px 5px 5px;
-margin: 5px 5px 5px 5px;
-border-radius: 8px;
-border: solid 0px #f4d9e1;
+#custom-date,
+#clock,
+#wireplumber,
+#network,
+#language,
+#custom-cliphist {
+  background-color: #282828;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+#custom-cliphist {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+#wireplumber {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+#battery {
+  background-color: #282828;
+  border-radius: 0px 0px 24px 0px;
+  padding-left: 13px;
+  padding-right: 15px;
+  margin-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 #custom-power {
-color: #24283b;
-background-color: #db4b4b;
-border-radius: 5px;
-margin-right: 10px;
-margin-top: 5px;
-margin-bottom: 5px;
-margin-left: 0px;
-padding: 0px 15px;
+  background-color: #282828;
+  color: #db4b4b;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 0px 15px;
+}
+
+#custom-idle {
+  background-color: #282828;
+  color: #824bdb;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  padding: 0px 10px;
 }
 
 #tray {
   background: #282828;
-  min-width: 20px;
   padding: 0 10px;
   border-radius: 16px;
+  margin-right: 10px;
 }
 
 #clock {
-  color: #E6B9C6;
+  color: #e6b9c6;
   background-color: #282828;
   border-radius: 0px 0px 0px 24px;
   padding-left: 13px;
@@ -77,9 +109,7 @@ padding: 0px 15px;
   margin-left: 10px;
   margin-top: 0px;
   margin-bottom: 0px;
-  font-weight: bold;
 }
-
 
 #battery {
   color: #9ece6a;
@@ -93,22 +123,6 @@ padding: 0px 15px;
   background-color: #f7768e;
   color: #24283b;
   border-radius: 5px 5px 5px 5px;
-}
-
-#backlight {
-  background-color: #24283b;
-  color: #db4b4b;
-  border-radius: 0px 0px 0px 0px;
-  margin: 5px;
-  margin-left: 0px;
-  margin-right: 0px;
-  padding: 0px 0px;
-}
-
-#network {
-  color: #f4d9e1;
-  border-radius: 8px;
-  margin-right: 5px;
 }
 
 #pulseaudio {
@@ -131,16 +145,23 @@ padding: 0px 15px;
   border-radius: 16px;
   margin-top: 5px;
   margin-bottom: 5px;
-  font-weight: normal;
-  font-style: normal;
 }
 
-#cpu, #battery, #memory, #disk {
+#cpu,
+#memory,
+#disk {
   background-color: #282828;
-  border-radius: 16px;
-  margin: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-top: 3px;
+  margin-bottom: 3px;
   padding: 0px 10px 0px 10px;
-  font-weight: bold;
+}
+
+#cpu {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+#disk {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }

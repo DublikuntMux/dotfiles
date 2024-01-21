@@ -5,7 +5,7 @@ sort=-time
 layer=overlay
 
 #цвет фона
-background-color=#1E1E2E
+background-color=#282828
 
 #ширина уведомления
 width=300
@@ -17,7 +17,7 @@ height=110
 border-size=0
 
 #цвет рамки
-border-color=#F5C2E7
+border-color=#f4d9e1
 
 #радиус скругления
 border-radius=15
@@ -37,18 +37,8 @@ ignore-timeout=1
 #настройка шрифта
 font=FiraCode Nerd Font mono 10
 
-
 #цвет рамки для уведомлений разной степени важности:
-
-[urgency=low]
-background-color=#1E1E2E
-
-[urgency=normal]
-background-color=#1E1E2E
-
 [urgency=high]
-background-color=#1E1E2E
-border-color=#FAB387
 default-timeout=0
 
 [category=mpd]
