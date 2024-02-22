@@ -1,24 +1,29 @@
 function fish_greeting
-    neofetch
+    fastfetch
 end
 
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 set -g -x EMSCRIPTEN_ROOT /usr/lib/emscripten
 set -g -x BUN_INSTALL "$HOME/.bun"
+set -g -x DENO_INSTALL "$HOME/.deno"
 set -g -x GCC_COLORS 'error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 set -g -x PATH $PATH ~/.local/bin
 set -g -x PATH $PATH ~/.local/lib
-set -g -x PATH $PATH ~/.local/bin/vlang
+set -g -x PATH $PATH ~/.local/bin/v
+set -g -x PATH $PATH ~/.yarn/bin
 set -g -x PATH $PATH ~/.cargo/bin
 set -g -x PATH $PATH ~/.local/bin/DiscordChatExporter
 set -g -x PATH $PATH /mnt/sda1/Develop/flutter/bin
 set -g -x PATH $PATH /usr/lib/emscripten
+set -g -x PATH $PATH /home/dublikunt/.dotnet/tools
+
+set -g -x PATH $DENO_INSTALL/bin $PATH
 set -g -x PATH $BUN_INSTALL/bin $PATH
 
-set -g -x ANDROID_SDK_ROOT ~/Android/Sdk
-set -g -x ANDROID_NDK_ROOT ~/Android/Sdk/ndk/25.2.9519653
+set -g -x ANDROID_SDK_ROOT ~/Develop/Android/
+set -g -x ANDROID_NDK_ROOT ~/Develop/Android/ndk/26.1.10909125
 
 set -g -x GDK_BACKEND wayland
 set -g -x TDESKTOP_DISABLE_GTK_INTEGRATION 1
@@ -33,7 +38,6 @@ set -g -x ELM_ACCEL opengl
 set -g -x _JAVA_AWT_WM_NONREPARENTING 1
 set -g -x NO_AT_BRIDGE 1
 set -g -x WINIT_UNIX_BACKEND wayland
-
 
 alias ls='exa -al --color=always --group-directories-first --icons'
 alias la='exa -a --color=always --group-directories-first --icons'
@@ -65,7 +69,6 @@ alias update="sudo pacman -Suy"
 alias cleanup='sudo pacman -Rns (pacman -Qtdq)'
 alias jctl="journalctl -p 3 -xb"
 
-# !! Contents within this block are managed by 'mamba init' !!
-set -gx MAMBA_EXE "/home/dublikun/.local/bin/micromamba"
-set -gx MAMBA_ROOT_PREFIX "/home/dublikun/micromamba"
-$MAMBA_EXE shell hook --shell fish --prefix $MAMBA_ROOT_PREFIX | source
+set -gx MAMBA_EXE "/home/dublikunt/.local/bin/micromamba"
+set -gx MAMBA_ROOT_PREFIX "/home/dublikunt/micromamba"
+$MAMBA_EXE shell hook --shell fish --root-prefix $MAMBA_ROOT_PREFIX | source
