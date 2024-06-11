@@ -18,6 +18,7 @@ set -g -x PATH $PATH ~/.local/bin/DiscordChatExporter
 set -g -x PATH $PATH /mnt/sda1/Develop/flutter/bin
 set -g -x PATH $PATH /usr/lib/emscripten
 set -g -x PATH $PATH /home/dublikunt/.dotnet/tools
+set -g -x PATH $PATH /home/dublikunt/.dotnet
 
 set -g -x PATH $DENO_INSTALL/bin $PATH
 set -g -x PATH $BUN_INSTALL/bin $PATH
@@ -39,10 +40,10 @@ set -g -x _JAVA_AWT_WM_NONREPARENTING 1
 set -g -x NO_AT_BRIDGE 1
 set -g -x WINIT_UNIX_BACKEND wayland
 
-alias ls='exa -al --color=always --group-directories-first --icons'
-alias la='exa -a --color=always --group-directories-first --icons'
-alias ll='exa -l --color=always --group-directories-first --icons'
-alias l.="exa -a | grep -E '^\.'"
+alias ls='eza -al --color=always --group-directories-first --icons'
+alias la='eza -a --color=always --group-directories-first --icons'
+alias ll='eza -l --color=always --group-directories-first --icons'
+alias l.=" -a | grep -E '^\.'"
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -69,6 +70,27 @@ alias update="sudo pacman -Suy"
 alias cleanup='sudo pacman -Rns (pacman -Qtdq)'
 alias jctl="journalctl -p 3 -xb"
 
-set -gx MAMBA_EXE "/home/dublikunt/.local/bin/micromamba"
-set -gx MAMBA_ROOT_PREFIX "/home/dublikunt/micromamba"
-$MAMBA_EXE shell hook --shell fish --root-prefix $MAMBA_ROOT_PREFIX | source
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/dublikunt/.ghcup/bin $PATH # ghcup-env
+
+###-begin-pnpm-completion-###
+function _pnpm_completion
+  set cmd (commandline -o)
+  set cursor (commandline -C)
+  set words (count $cmd)
+
+  set completions (eval env DEBUG=\"" \"" COMP_CWORD=\""$words\"" COMP_LINE=\""$cmd \"" COMP_POINT=\""$cursor\"" SHELL=fish pnpm completion-server -- $cmd)
+
+  if [ "$completions" = "__tabtab_complete_files__" ]
+    set -l matches (commandline -ct)*
+    if [ -n "$matches" ]
+      __fish_complete_path (commandline -ct)
+    end
+  else
+    for completion in $completions
+      echo -e $completion
+    end
+  end
+end
+
+complete -f -d 'pnpm' -c pnpm -a "(_pnpm_completion)"
+###-end-pnpm-completion-###
